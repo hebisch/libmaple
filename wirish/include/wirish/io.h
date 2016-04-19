@@ -204,6 +204,23 @@ uint8 isButtonPressed(uint8 pin=BOARD_BUTTON_PIN,
 uint8 waitForButtonPress(uint32 timeout_millis=0);
 
 /**
+ * Shift in a byte of data, one bit at a time.
+ *
+ * This shifts in bits of a byte from data pin starting at either the
+ * most significant or least significant bit.  Before reading
+ * a bit clock pin is driven high, to reqest a bit.  After reading
+ * the bit clock pin is driven low.
+ *
+ * @param dataPin  Pin to shift data out on
+ * @param clockPin Pin to pulse after each bit is shifted out
+ * @param bitOrder Either MSBFIRST (big-endian) or LSBFIRST (little-endian).
+ *
+ * @return shifted in value
+ *
+ */
+uint8 shiftIn(uint8 dataPin, uint8 clockPin, uint8 bitOrder);
+
+/**
  * Shift out a byte of data, one bit at a time.
  *
  * This function starts at either the most significant or least

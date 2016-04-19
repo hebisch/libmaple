@@ -35,3 +35,14 @@ void shiftOut(uint8 dataPin, uint8 clockPin, uint8 bitOrder, uint8 value) {
         togglePin(clockPin);
     }
 }
+
+uint8 shiftIn(uint8 dataPin, uint8 clockPin, uint8 bitOrder) {
+    uint8 value = 0;
+    for (int i = 0; i < 8; i++) {
+        digitalWrite(clockPin, HIGH);
+        int bit = bitOrder == LSBFIRST ? i : (7 - i);
+        value |= digitalRead(dataPin) << bit;
+        digitalWrite(clockPin, LOW);
+    }
+    return value;
+}
